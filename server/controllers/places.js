@@ -14,7 +14,7 @@ const addPlace = async(req, res) => {
         let image = fileUpload(body.image, "/public");
         console.log("IMAGEN ES =>" + image)
         //image = `http://localhost:5050${image}`
-        image = `https://lugaressegurosv3.azurewebsites.net:5050${image}`
+        image = `https://lugaressegurosv3.azurewebsites.net${image}`
 
         // crear la direccion insertando datos como SQL INSERT
         const address = await models.addresses.create({
