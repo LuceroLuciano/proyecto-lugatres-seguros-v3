@@ -8,14 +8,17 @@ const {db} = require("./config/database");
 
 const app = express();
 
-// Utilizar el middleware de cors para todas las rutas
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+  
+app.use(cors(corsOptions));
 
-// Configuración de las rutas y la lógica de tu aplicación aquí
-
-// Iniciar el servidor en el puerto 3000
-app.listen(3000, () => {
-  console.log('Servidor iniciado en el puerto 3000');
+server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 });
 
 const { server } = require("./server/index"); // importamos el servidor
