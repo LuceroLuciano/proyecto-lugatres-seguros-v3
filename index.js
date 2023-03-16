@@ -7,19 +7,10 @@ const {PORT} = require("./config/config");
 const {db} = require("./config/database");
 
 const app = express();
-
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200
-}
   
-app.use(cors(corsOptions));
-
-server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
+app.use(cors({
+    origin:'*'
+}));
 
 const { server } = require("./server/index"); // importamos el servidor
 
