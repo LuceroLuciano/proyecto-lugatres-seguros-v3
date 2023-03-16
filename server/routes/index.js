@@ -21,8 +21,10 @@ const { verifyToken } = require("../middlewares/auth");
 // en esta ruta se llaman todos los metodos: post, get
 
 // agrega un token antes de agregar un lugar
+// router.route("/places").post(verifyToken, addPlace).get(getPlace);
 
-router.route("/places").post(verifyToken, addPlace).get(getPlace);
+// NO usa token
+router.route("/places").post(addPlace).get(getPlace);
 
 // ruta para actualizar 
 router.put("/places/:placeId", updatePlace);
@@ -32,7 +34,9 @@ router.put("/places/:placeId", updatePlace);
 router.delete("/places/:placeId", deletePlace);
 
 //ruta para agregar un comentario
-router.post("/comments", verifyToken, addCommentToPlace);
+// router.post("/comments", verifyToken, addCommentToPlace);
+
+router.post("/comments", addCommentToPlace);
 
 // ruta para listar los comentarios
 router.get("/comments/:placeId", getCommentByPlace);
@@ -41,7 +45,9 @@ router.get("/comments/:placeId", getCommentByPlace);
 router.delete("/comments/:commentId", deleteComment);
 
 // ruta para dar likes
-router.post("/likes", verifyToken, addLikeDislike);
+// router.post("/likes", verifyToken, addLikeDislike);
+
+router.post("/likes", addLikeDislike);
 
 // ruta para registrar un usuario
 router.post("/registry", registry);
