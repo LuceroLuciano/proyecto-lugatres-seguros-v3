@@ -7,10 +7,15 @@ const {PORT} = require("./config/config");
 const {db} = require("./config/database");
 
 const app = express();
-  
-app.use(cors({
+
+/*app.use(cors({
     origin:'*'
-}));
+})); */
+
+// app.use(cors()); // todo el mundo
+
+const whileList = ['http://localhost:3000']
+app.use(cors({ origin:[whileList ]}))
 
 const { server } = require("./server/index"); // importamos el servidor
 
