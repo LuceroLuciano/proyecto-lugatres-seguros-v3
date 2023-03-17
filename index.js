@@ -13,10 +13,10 @@ const app = express();
     origin:'*'
 })); */
 
-// app.use(cors()); // todo el mundo
+app.use(cors()); // todo el mundo
 
-const whileList = ['http://localhost:3000']
-app.use(cors({ origin:[whileList ]}))
+/*const whileList = ['http://localhost:3000']
+app.use(cors({ origin:[whileList ]})) */
 
 const { server } = require("./server/index"); // importamos el servidor
 
