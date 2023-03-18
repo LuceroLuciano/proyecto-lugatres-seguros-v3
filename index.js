@@ -7,14 +7,14 @@ const cors = require('cors');
 const {PORT} = require("./config/config");
 const {db} = require("./config/database");
 
-const app = express();
+//const app = express();
 
 /*app.use(cors({
     origin:'*'
 })); */
 
 //app.use(cors()); // todo el mundo
-server.use(cors());
+//server.use(cors());
 
 /*const whileList = ['http://localhost:3000']
 app.use(cors({ origin:[whileList ]})) */
