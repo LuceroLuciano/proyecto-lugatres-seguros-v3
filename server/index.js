@@ -10,9 +10,6 @@ const cors = require("cors");
 // idicamos que las solicitudes van a traer algo en el código
 server.use(express.json());
 
-// middleware son funciones que se ejecutan antes de que se ejecute otra función
-server.use(router);
-
 // habilitando el cors
 //server.use(cors());
 server.use(cors({ origin: true, credentials: true }))
@@ -25,6 +22,10 @@ server.use(cors({ origin: true, credentials: true }))
         )
         next()
     }) 
+
+
+// middleware son funciones que se ejecutan antes de que se ejecute otra función
+server.use(router);
 
 
 
