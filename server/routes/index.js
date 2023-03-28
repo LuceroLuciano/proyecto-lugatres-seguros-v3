@@ -3,7 +3,7 @@
 const { Router } =  require("express");
 const { login } = require("../controllers/login");
 const { addCommentToPlace, getCommentByPlace, deleteComment } = require("../controllers/comments");
-const { addPlace, getPlace, updatePlace, deletePlace } = require("../controllers/places")
+const { addPlace, getPlace, updatePlace, deletePlace, getPlaceOne } = require("../controllers/places")
 //const { registry } = require("../controllers/users")
 const { addLikeDislike } = require("../controllers/likes");
 const { registry } = require("../controllers/users");
@@ -25,6 +25,11 @@ const { verifyToken } = require("../middlewares/auth");
 
 // NO usa token
 router.route("/places").post(addPlace).get(getPlace);
+
+
+// ruta para ver un solo lugar
+router.route("/places/:placeId").get(getPlaceOne);
+
 
 // ruta para actualizar 
 router.put("/places/:placeId", updatePlace);

@@ -71,6 +71,33 @@ const getPlace = async(req, res) => {
     };
 };
 
+
+// función para mostrar un solo lugar, pasamos su id
+const getPlaceOne = async(req, res) => {
+    try {
+        // Lugar que quiero mostrar 
+        const { placeId } = req.params; // se obtiene el id del place
+        const { body } = req;
+        console.log(body);
+        // 2. Verificar que el lugar exista
+        const place = await models.places.findOne({
+            where: {
+                id: placeId,
+            },
+        });
+
+        if(!place) return res.status(404).send("El lugar no se encuentra")
+        
+        return res.status(200).send(place);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Lo sentimos a ocurrido un error :(");
+    }
+    
+}
+
+
+
 // función para actualiza run lugar(place)
 const updatePlace = async(req, res) => {
     try {
@@ -146,4 +173,4 @@ const deletePlace = async (req, res) => {
     }
 }
 
-module.exports = { addPlace, getPlace, updatePlace, deletePlace };
+module.exports = { addPlace, getPlace, updatePlace, deletePlace, getPlaceOne };
