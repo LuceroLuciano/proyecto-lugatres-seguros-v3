@@ -64,6 +64,9 @@ const getPlace = async(req, res) => {
 
                 },
             ],
+            where: {                
+                statusDelete: false,
+            },
         });
         return res.status(200).send(places);
     } catch (error) {
@@ -80,7 +83,7 @@ const getPlaceOne = async(req, res) => {
         const { placeId } = req.params; // se obtiene el id del place
         const { body } = req;
         console.log(body);
-        
+
         // 2. Verificar que el lugar exista
         // const place = await models.places.findOne({
         //     where: {
@@ -90,6 +93,7 @@ const getPlaceOne = async(req, res) => {
 
 
         // Visualizar Lugares y direccion
+
         const place = await models.places.findOne({
             include: [
                 {
@@ -99,6 +103,7 @@ const getPlaceOne = async(req, res) => {
             ],
             where: {
                 id: placeId,
+                statusDelete: false,
             },
         });
 
