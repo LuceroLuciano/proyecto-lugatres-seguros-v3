@@ -1,5 +1,6 @@
 // enpoints
 //const { json } = require("sequelize");
+const { where } = require("sequelize");
 const models = require("../../database/models");
 const {fileUpload} = require("../utils/uploadFiles");
 
@@ -79,8 +80,23 @@ const getPlaceOne = async(req, res) => {
         const { placeId } = req.params; // se obtiene el id del place
         const { body } = req;
         console.log(body);
+        
         // 2. Verificar que el lugar exista
+        // const place = await models.places.findOne({
+        //     where: {
+        //         id: placeId,
+        //     }, 
+        // });
+
+
+        // Visualizar Lugares y direccion
         const place = await models.places.findOne({
+            include: [
+                {
+                model: models.addresses, // este es el modelo que quiero unir
+                attributes:{exclude: ["updatedAt"] }, // estos son los atributos que quiero excluir
+                }, 
+            ],
             where: {
                 id: placeId,
             },
@@ -88,7 +104,8 @@ const getPlaceOne = async(req, res) => {
 
         if(!place) return res.status(404).send("El lugar no se encuentra")
         
-        return res.status(200).send(place);
+        
+        return res.status(200).send(place); // Muestro direccion y lugar
     } catch (error) {
         console.log(error);
         return res.status(500).send("Lo sentimos a ocurrido un error :(");
