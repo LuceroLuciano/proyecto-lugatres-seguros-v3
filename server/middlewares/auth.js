@@ -8,7 +8,7 @@ const verifyToken = async(req, res, next) => {
     try {
         const token = req.get("X-AUTH-TOKEN");
         const decoded = jwt.verify(token, JWT.SEED);
-        // console.error(`EL TOKEN CONTIENE: ${JSON.stringify(decoded)}`);
+        console.error(`EL TOKEN CONTIENE: ${JSON.stringify(decoded)}`);
         req.userId = decoded.userId;
         next(); // aqui ya pasa el controler hacia el controlador 
     } catch (error) {
