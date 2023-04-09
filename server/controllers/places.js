@@ -150,7 +150,7 @@ const updatePlace = async(req, res) => {
             city:body.city,
             suburb:body.suburb,
             street:body.street,
-            postCode:body.postCode
+            postal_code:body.postal_code
         });
         
         // 3. Actualizar datos        
