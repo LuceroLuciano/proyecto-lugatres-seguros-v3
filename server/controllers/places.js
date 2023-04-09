@@ -160,7 +160,7 @@ const updatePlace = async(req, res) => {
         });
 
         // 4. Devolver una respuesta
-        return res.status(200).send(place);
+        return res.status(200).send(place, address);
     } catch (error) {
         console.log(error);
         return res.status(500).send("Lo sentimos a ocurrido un error :(");
